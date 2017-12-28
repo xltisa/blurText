@@ -1,0 +1,109 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/blur"
+    tools:context=".MainActivity" >
+
+    <include
+        android:id="@+id/mainTitle"
+        layout="@layout/title_layout" />
+
+    <LinearLayout
+        android:id="@+id/textTitleLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mainTitle"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dip"
+            android:gravity="center"
+            android:text="欢 迎 使 用"
+            android:textColor="#ffffff"
+            android:textSize="30sp" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="物联网家居监控系统"
+            android:textColor="#ffffff"
+            android:textSize="24sp" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/loginLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="#60FFFFFF">
+
+        <include
+            android:id="@+id/input_layout"
+            layout="@layout/input_layout"
+            android:layout_width="match_parent"
+            android:layout_height="130dip" />
+
+        <include
+            android:id="@+id/layout_progress"
+            layout="@layout/layout_progress"
+            android:layout_width="match_parent"
+            android:layout_height="130dip"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/main_btn_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/input_layout"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="15dip"
+            android:layout_marginBottom="15dip"
+            android:background="@drawable/text_bg"
+            android:gravity="center"
+            android:paddingBottom="2dip"
+            android:paddingLeft="15dip"
+            android:paddingRight="15dip"
+            android:paddingTop="2dip"
+            android:text="登录"
+            android:textColor="#ffffff"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/main_btn_cannel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/input_layout"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="15dip"
+            android:layout_marginBottom="15dip"
+            android:background="@drawable/text_bg"
+            android:gravity="center"
+            android:paddingBottom="2dip"
+            android:paddingLeft="15dip"
+            android:paddingRight="15dip"
+            android:paddingTop="2dip"
+            android:text="取消"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:visibility="gone"/>
+
+        <Switch
+            android:id="@+id/switchSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/main_btn_login"
+            android:layout_marginLeft="24dp"
+            android:layout_marginStart="24dp"
+            android:layout_toEndOf="@+id/layout_progress"
+            android:layout_toRightOf="@+id/layout_progress"
+            android:text="保存"
+            android:textColor="@android:color/background_light"
+            android:textSize="18sp"
+            tools:checked="true" />
+    </RelativeLayout>
+
+</RelativeLayout>
