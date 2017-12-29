@@ -8,6 +8,7 @@ import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,11 @@ import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.support.v7.widget.Toolbar;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
 
 /**
  * Author: Rewnosor Xltisa
@@ -28,7 +34,7 @@ import android.widget.Toast;
  * post: http://blog.csdn.net/qq_25193681/article/details/52005375
  */
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
 
     private View inputLayout;
     private TextView btnLogin, btnCannel;
@@ -222,7 +228,37 @@ public class MainActivity extends Activity {
                 mName.setVisibility(View.INVISIBLE);
                 mPsw.setVisibility(View.INVISIBLE);
 
-                inputAnimator(inputLayout, mWidth, mHeight);
+                if(!(userName.equals("lwj")&&userPassword.equals("123456"))) {
+                    inputAnimator(inputLayout, mWidth, mHeight);
+                    //延时效果
+                    Timer timer = new Timer();
+                    TimerTask timerTask = new TimerTask() {
+                        @Override
+                        public void run() {
+                            recovery();
+                            //Toast toast = Toast.makeText(context, "账户或密码不正确", Toast.LENGTH_LONG);
+                            //toast.show();
+                        }
+                    };
+
+                    //after 3 seconds jump to Login activity
+                    timer.schedule(timerTask, 10 * 1000);
+                }
+                /*else{
+                    //延时效果
+                    Timer timer = new Timer();
+                    TimerTask timerTask = new TimerTask() {
+                        @Override
+                        public void run() {
+                            recovery();
+                            Toast toast = Toast.makeText(context, "登录成功", Toast.LENGTH_LONG);
+                            toast.show();
+                        }
+                    };
+
+                    //after 3 seconds jump to Login activity
+                    timer.schedule(timerTask, 5 * 1000);
+                }*/
             }
             else if(btnCannel.getVisibility() == View.VISIBLE){
                 btnLogin.setVisibility(View.VISIBLE);
@@ -233,5 +269,41 @@ public class MainActivity extends Activity {
                 toast.show();
             }
         }
+    }
+
+    class myToolBar{
+
+        private Context context;
+
+        private Toolbar toolbar;
+        private TextView toolBarTextView;
+
+        public myToolBar(Context context){
+            this.context = context;
+        }
+
+
+
+        public void initToolBar(){
+            toolbar = (Toolbar)findViewById(R.id.toolbar);
+            toolBarTextView = (TextView)findViewById(R.id.text_view_toolbar_title);
+            setSupportActionBar(toolbar);
+
+            if (getSupportActionBar() != null) {
+                getSupportActionBar().setHomeButtonEnabled(true);
+                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                getSupportActionBar().setDisplayShowTitleEnabled(false);
+            }
+            //设置返回工具
+            toolbar.setNavigationIcon(R.drawable.back);//tool like the right side in AS
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();//返回上一个界面或退出
+                }
+            });
+            toolBarTextView.setText("Samantha");
+        }
+
     }
 }
